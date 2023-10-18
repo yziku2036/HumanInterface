@@ -16,10 +16,10 @@ def gen_image(colorcode):
 	img[:,:,2]=b
 	return img
 
-def moji(img):
+def moji(img,disp_str="ヒューマンインターフェース"):
 	fontpath = "ttf/ipag.ttf"     
 	fontsize=128
-	disp_str="ヒューマンインターフェース"
+	#disp_str="ヒューマンインターフェース"
 	font = ImageFont.truetype(fontpath, fontsize)
 	img_pil = Image.fromarray(img)
 	draw = ImageDraw.Draw(img_pil)
@@ -39,8 +39,10 @@ def main():
 	colorcode=[[255,219,205],[255,176,145],[255,133,84],[255,90,25],[220,62,0],[160,45,0],[100,28,0]]
 	
 	#スコア100の画像表示
-	img=gen_image([255,191,165])
-	img=display(img,"base")
+	img_kijun=gen_image([255,191,165])
+	img_kijun=moji(img_kijun,"基準カラー")
+	img_kijun=display(img_kijun,"base")
+	
 	cv2.destroyAllWindows()
 	#比較対象の画像表示
 	for code in colorcode:
